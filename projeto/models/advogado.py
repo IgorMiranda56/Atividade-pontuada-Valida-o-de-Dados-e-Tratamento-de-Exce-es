@@ -1,3 +1,4 @@
+from abc import abstractmethod
 from numpy import double
 from projeto.models.endereco import Endereco
 from projeto.models.enums.estado_civil import EstadoCivil
@@ -11,7 +12,13 @@ class Advogado(Funcionario):
                 matricula: str, setor: Setor, salario: double, oab: str, endereco: Endereco) -> None:
         super().__init__(id, nome, telefone, email, genero, estado_civil, dataNascimento, cpf, rg, matricula, setor, salario, endereco)
         self.oab = oab
-    
+
+    @abstractmethod
+    def _verificar_salario(self, salario) -> float:
+        return 
+
+    def _verificar_id(self, id) -> int:
+        pass  
 #Tostring()
     def __str__(self) -> str:
         return (super().__str__(),

@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod
+#from abc import ABC, abstractmethod
 from numpy import double
 from projeto.models.endereco import Endereco
 from projeto.models.enums.estado_civil import EstadoCivil
@@ -7,7 +7,7 @@ from projeto.models.pessoa_fisica import PessoaFisica
 from projeto.models.enums.sector import Setor
 
 #Definindo classes
-class Funcionario(PessoaFisica, ABC):
+class Funcionario(PessoaFisica):
     def __init__(self, id: int, nome: str, telefone: str, email: str, genero: Genero, estado_civil: EstadoCivil, dataNascimento: str, cpf: str, rg: str, 
                  matricula: str, setor: Setor, salario: double, endereco: Endereco) -> None:
         super().__init__(id, nome, telefone, email, genero, estado_civil, dataNascimento, endereco)
@@ -18,7 +18,7 @@ class Funcionario(PessoaFisica, ABC):
         self.salario = self._verificar_salario(salario)
 
 #Definindo exceção para atributo
-    @abstractmethod
+    #@abstractmethod
     def _verificar_salario(self, salario):
         if salario < 0:
             raise ValueError("Salario não pode ser negativa.")
