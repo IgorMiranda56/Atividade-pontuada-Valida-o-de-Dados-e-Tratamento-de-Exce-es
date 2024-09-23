@@ -6,13 +6,13 @@ from projeto.models.enums.sector import Setor
 from projeto.models.funcionario import Funcionario
 
 #Definindo classes
-class Advogado(Funcionario):
-    def __init__(self, id: int, nome: str, telefone: str, email: str, genero: Genero, estado_civil: EstadoCivil, dataNascimento: str, cpf: str, rg: str,
-                matricula: str, setor: Setor, salario: double, oab: str, endereco: Endereco) -> None:
+class Engenheiro(Funcionario):
+    def __init__(self, id: int, nome: str, telefone: str, email: str, genero: Genero, estado_civil: EstadoCivil, dataNascimento: str, cpf: str, rg: str, matricula: str,
+                setor: Setor, salario: double, crea: str, endereco: Endereco) -> None:
         super().__init__(id, nome, telefone, email, genero, estado_civil, dataNascimento, cpf, rg, matricula, setor, salario, endereco)
-        self.oab = oab
-    
+        self.crea = crea
+
 #Tostring()
     def __str__(self) -> str:
         return (super().__str__(),
-                f"\nOAB: {self.oab}")
+                f"\nCREA: {self.crea}")
