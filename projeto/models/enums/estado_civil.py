@@ -5,7 +5,7 @@ class EstadoCivil(Enum):
     SOLTEIRO = ("Solteiro")
     CASADO = ("Casado")
     SEPARADO = ("Separado")
-    DIVORCIADO = ("Divorcidado")
+    DIVORCIADO = ("Divorciado")
     VIUVO = ("Viuvo")
 
     def __init__(self ,texto:str) -> None:

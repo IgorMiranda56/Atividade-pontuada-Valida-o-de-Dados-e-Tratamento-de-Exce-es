@@ -1,8 +1,8 @@
-#from abc import ABC, abstractmethod
+from abc import ABC, abstractmethod
 from projeto.models.endereco import Endereco
 
 #Definindo classe
-class Pessoa:
+class Pessoa(ABC):
     def __init__(self, id: int, nome: str, telefone: str, email: str, endereco: Endereco) -> None:
         self.id = self._verificar_id(id)
         self.nome = nome
@@ -11,10 +11,12 @@ class Pessoa:
         self.endereco = endereco
 
 #Definindo exceção para atributo
-    #@abstractmethod
-    def _verificar_id(self, id):
+    def _verificar_id(self, id: int) -> int:
+        #Método para verificar com duas exceções de ID se ele é int e se o numero é positivo.
         if not isinstance(id, int):
-            raise TypeError("Digite somente numeros.")
+            raise TypeError("Digite somente numeros inteiros para ID.")
+        if id < 0:
+            raise ValueError("Digite um numero que seja inteiro e positivo para ID.")
         return id
     
 #Tostring()
