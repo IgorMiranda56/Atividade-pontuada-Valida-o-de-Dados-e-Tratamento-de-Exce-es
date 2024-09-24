@@ -23,6 +23,11 @@ def test_validar_id_valor_negativo(teste_medico):
         Medico(-79, "Amanda", "(71)99999-7777", "amandaklein@gmail.com", Genero.FEMININO, EstadoCivil.SEPARADO, "30/01/1991", "066.611.311.77", "32971117-36",
                         "98111", Setor.SAUDE, 10000.00, "3659", Endereco("Rua K", "12", "Apartamento A", "70000-000", "Rio de Janeiro", UnidadeFederativa.RIO_DE_JANEIRO))
 
+def test_validar_id_nome_vazio(teste_medico):
+    with pytest.raises(ValueError, match="O nome não pode ser vazio."):
+        Medico(79, "", "(71)99999-7777", "amandaklein@gmail.com", Genero.FEMININO, EstadoCivil.SEPARADO, "30/01/1991", "066.611.311.77", "32971117-36",
+                        "98111", Setor.SAUDE, 10000.00, "3659", Endereco("Rua K", "12", "Apartamento A", "70000-000", "Rio de Janeiro", UnidadeFederativa.RIO_DE_JANEIRO))
+
 def test_validar_salario_tipo_valor_float(teste_medico):
     with pytest.raises(TypeError, match="Digite somente numeros reais com o ponto separando casas decimais."):
         Medico(79, "Amanda", "(71)99999-7777", "amandaklein@gmail.com", Genero.FEMININO, EstadoCivil.SEPARADO, "30/01/1991", "066.611.311.77", "32971117-36",

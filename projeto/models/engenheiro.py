@@ -18,6 +18,9 @@ class Engenheiro(Funcionario):
     def _verificar_salario(self, salario: float) -> float:
         return super()._verificar_salario(salario)
 
+    def _verificar_nome(self, nome: str) -> str:
+        return super()._verificar_nome(nome)
+    
 #Tostring()
     def __str__(self) -> str:
         return (super().__str__() + 

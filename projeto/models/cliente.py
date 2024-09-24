@@ -22,6 +22,9 @@ class Cliente(PessoaFisica):
             raise ValueError("Digite um numero que seja inteiro e positivo para cliente.")
         return protocolo_atendimento
     
+    def _verificar_nome(self, nome: str) -> str:
+        return super()._verificar_nome(nome)
+    
 #Tostring()
     def __str__(self) -> str:
         return (super().__str__() +

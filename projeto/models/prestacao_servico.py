@@ -13,6 +13,9 @@ class PrestacaoServico(PessoaJuridica):
     def _verificar_id(self, id: int) -> int:
         return super()._verificar_id(id)
 
+    def _verificar_nome(self, nome: str) -> str:
+        return super()._verificar_nome(nome)
+    
 #Tostring()
     def __str__(self) -> str:
         return (super().__str__() +

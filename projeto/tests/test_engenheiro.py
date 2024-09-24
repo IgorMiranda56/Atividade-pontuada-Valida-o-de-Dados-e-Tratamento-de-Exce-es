@@ -23,6 +23,11 @@ def test_validar_id_valor_negativo(teste_engenheiro):
         Engenheiro(-23, "Jose", "(71)99999-8888", "jose231@gmail.com", Genero.MASCULINO, EstadoCivil.CASADO, "23/05/1976", "077.659.321.77", "32978897-36",
                         "98989", Setor.OPERACOES, 5000.00, "321", Endereco("Rua O", "45", "Apartamento B", "40000-000", "Salvador", UnidadeFederativa.BAHIA))
 
+def test_validar_nome_vazio(teste_engenheiro):
+    with pytest.raises(ValueError, match="O nome não pode ser vazio."):
+        Engenheiro(23, "", "(71)99999-8888", "jose231@gmail.com", Genero.MASCULINO, EstadoCivil.CASADO, "23/05/1976", "077.659.321.77", "32978897-36",
+                        "98989", Setor.OPERACOES, 5000.00, "321", Endereco("Rua O", "45", "Apartamento B", "40000-000", "Salvador", UnidadeFederativa.BAHIA))
+
 def test_validar_salario_tipo_valor_float(teste_engenheiro):
     with pytest.raises(TypeError, match="Digite somente numeros reais com o ponto separando casas decimais."):
         Engenheiro(23, "Jose", "(71)99999-8888", "jose231@gmail.com", Genero.MASCULINO, EstadoCivil.CASADO, "23/05/1976", "077.659.321.77", "32978897-36",

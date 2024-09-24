@@ -5,7 +5,7 @@ from projeto.models.endereco import Endereco
 class Pessoa(ABC):
     def __init__(self, id: int, nome: str, telefone: str, email: str, endereco: Endereco) -> None:
         self.id = self._verificar_id(id)
-        self.nome = nome
+        self.nome = self._verificar_nome(nome)
         self.telefone = telefone
         self.email = email
         self.endereco = endereco
@@ -19,6 +19,11 @@ class Pessoa(ABC):
             raise ValueError("Digite um numero que seja inteiro e positivo para ID.")
         return id
     
+    def _verificar_nome(self, nome: str) -> str:
+        if not isinstance(nome, str) or not nome.strip():
+            raise ValueError("O nome não pode ser vazio.")
+        return nome
+
 #Tostring()
     def __str__(self) -> str:
         return (f"\nNome: {self.nome}"

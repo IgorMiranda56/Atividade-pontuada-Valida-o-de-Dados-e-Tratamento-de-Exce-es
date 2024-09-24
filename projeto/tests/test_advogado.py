@@ -23,6 +23,11 @@ def test_validar_id_valor_negativo(teste_avogado):
         Advogado(-46, "Fernando", "(71)99999-8888", "fernando231@gmail.com", Genero.MASCULINO, EstadoCivil.DIVORCIADO, "06/11/1980", "071.659.321.77", "32978897-56",
                         "98981", Setor.JURIDICO, 7000.00, "963", Endereco("Rua P", "96", "Apartamento C", "60000-000", "São Paulo", UnidadeFederativa.SAO_PAULO))
 
+def test_validar_nome_vazio(teste_avogado):
+    with pytest.raises(ValueError, match="O nome não pode ser vazio."):
+        Advogado(46, "", "(71)99999-8888", "fernando231@gmail.com", Genero.MASCULINO, EstadoCivil.DIVORCIADO, "06/11/1980", "071.659.321.77", "32978897-56",
+                        "98981", Setor.JURIDICO, 7000.00, "963", Endereco("Rua P", "96", "Apartamento C", "60000-000", "São Paulo", UnidadeFederativa.SAO_PAULO))
+
 def test_validar_salario_tipo_valor_float(teste_avogado):
     with pytest.raises(TypeError, match="Digite somente numeros reais com o ponto separando casas decimais."):
         Advogado(46, "Fernando", "(71)99999-8888", "fernando231@gmail.com", Genero.MASCULINO, EstadoCivil.DIVORCIADO, "06/11/1980", "071.659.321.77", "32978897-56",

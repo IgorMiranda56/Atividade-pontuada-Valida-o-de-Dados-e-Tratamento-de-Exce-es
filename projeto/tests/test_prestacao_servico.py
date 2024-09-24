@@ -19,7 +19,12 @@ def test_validar_id_valor_negativo(teste_prestacao_servico):
     with pytest.raises(ValueError, match="Digite um numero que seja inteiro e positivo para ID."):
         PrestacaoServico(-103, "KAIPE SOLUCOES", "(75)99999-4444", "kaypesolucoes@gmail.com", "654648/0001", "63549879", "03/01/2020", "20/02/2024",
                                           Endereco("Rua TU", "1300", "Setor F", "47000-000", "Camacari", UnidadeFederativa.BAHIA))
-        
+
+def test_validar_id_nome_vazio(teste_prestacao_servico):
+    with pytest.raises(ValueError, match="O nome não pode ser vazio."):
+        PrestacaoServico(103, "", "(75)99999-4444", "kaypesolucoes@gmail.com", "654648/0001", "63549879", "03/01/2020", "20/02/2024",
+                                          Endereco("Rua TU", "1300", "Setor F", "47000-000", "Camacari", UnidadeFederativa.BAHIA))
+
 #Validando Atributos
 def test_validar_id_cliente(teste_prestacao_servico):
     assert teste_prestacao_servico.id == 103
