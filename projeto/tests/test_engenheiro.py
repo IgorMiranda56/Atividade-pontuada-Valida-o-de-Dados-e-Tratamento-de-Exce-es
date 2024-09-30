@@ -8,36 +8,56 @@ from projeto.models.enums.unidade_federativa import UnidadeFederativa
 
 @pytest.fixture
 def teste_engenheiro():
-    engenheiro1 = Engenheiro(23, "Jose", "(71)99999-8888", "jose231@gmail.com", Genero.MASCULINO, EstadoCivil.CASADO, "23/05/1976", "077.659.321.77", "32978897-36",
+    engenheiro1 = Engenheiro(23, "Jose", "(71)99999-8888", "jose231@gmail.com", Genero.MASCULINO, EstadoCivil.CASADO, "23/05/1976", "077.659.321.77", "32978897-36", 48,
                         "98989", Setor.OPERACOES, 5000.00, "321", Endereco("Rua O", "45", "Apartamento B", "40000-000", "Salvador", UnidadeFederativa.BAHIA))
     return engenheiro1
 
 #Validando Exceções
 def test_validar_id_tipo_int(teste_engenheiro):
     with pytest.raises(TypeError, match="Digite somente numeros inteiros para ID."):
-        Engenheiro("ff", "Jose", "(71)99999-8888", "jose231@gmail.com", Genero.MASCULINO, EstadoCivil.CASADO, "23/05/1976", "077.659.321.77", "32978897-36",
+        Engenheiro("ff", "Jose", "(71)99999-8888", "jose231@gmail.com", Genero.MASCULINO, EstadoCivil.CASADO, "23/05/1976", "077.659.321.77", "32978897-36", 48,
                         "98989", Setor.OPERACOES, 5000.00, "321", Endereco("Rua O", "45", "Apartamento B", "40000-000", "Salvador", UnidadeFederativa.BAHIA))
 
 def test_validar_id_valor_negativo(teste_engenheiro):
     with pytest.raises(ValueError, match="Digite um numero que seja inteiro e positivo para ID."):
-        Engenheiro(-23, "Jose", "(71)99999-8888", "jose231@gmail.com", Genero.MASCULINO, EstadoCivil.CASADO, "23/05/1976", "077.659.321.77", "32978897-36",
+        Engenheiro(-23, "Jose", "(71)99999-8888", "jose231@gmail.com", Genero.MASCULINO, EstadoCivil.CASADO, "23/05/1976", "077.659.321.77", "32978897-36", 48,
                         "98989", Setor.OPERACOES, 5000.00, "321", Endereco("Rua O", "45", "Apartamento B", "40000-000", "Salvador", UnidadeFederativa.BAHIA))
 
 def test_validar_nome_vazio(teste_engenheiro):
     with pytest.raises(ValueError, match="O nome não pode ser vazio."):
-        Engenheiro(23, "", "(71)99999-8888", "jose231@gmail.com", Genero.MASCULINO, EstadoCivil.CASADO, "23/05/1976", "077.659.321.77", "32978897-36",
+        Engenheiro(23, "", "(71)99999-8888", "jose231@gmail.com", Genero.MASCULINO, EstadoCivil.CASADO, "23/05/1976", "077.659.321.77", "32978897-36", 48,
+                        "98989", Setor.OPERACOES, 5000.00, "321", Endereco("Rua O", "45", "Apartamento B", "40000-000", "Salvador", UnidadeFederativa.BAHIA))
+        
+def test_validar_nome_tipo(teste_engenheiro):
+    with pytest.raises(TypeError, match="O nome deveria ser um texto."):
+        Engenheiro(23, 132, "(71)99999-8888", "jose231@gmail.com", Genero.MASCULINO, EstadoCivil.CASADO, "23/05/1976", "077.659.321.77", "32978897-36", 48,
                         "98989", Setor.OPERACOES, 5000.00, "321", Endereco("Rua O", "45", "Apartamento B", "40000-000", "Salvador", UnidadeFederativa.BAHIA))
 
 def test_validar_salario_tipo_valor_float(teste_engenheiro):
     with pytest.raises(TypeError, match="Digite somente numeros reais com o ponto separando casas decimais."):
-        Engenheiro(23, "Jose", "(71)99999-8888", "jose231@gmail.com", Genero.MASCULINO, EstadoCivil.CASADO, "23/05/1976", "077.659.321.77", "32978897-36",
+        Engenheiro(23, "Jose", "(71)99999-8888", "jose231@gmail.com", Genero.MASCULINO, EstadoCivil.CASADO, "23/05/1976", "077.659.321.77", "32978897-36", 48,
                         "98989", Setor.OPERACOES, "f", "321", Endereco("Rua O", "45", "Apartamento B", "40000-000", "Salvador", UnidadeFederativa.BAHIA))
 
 def test_validar_salario_valor_negativo(teste_engenheiro):
     with pytest.raises(ValueError, match="Digite um numero que seja real e positivo."):
-        Engenheiro(23, "Jose", "(71)99999-8888", "jose231@gmail.com", Genero.MASCULINO, EstadoCivil.CASADO, "23/05/1976", "077.659.321.77", "32978897-36",
+        Engenheiro(23, "Jose", "(71)99999-8888", "jose231@gmail.com", Genero.MASCULINO, EstadoCivil.CASADO, "23/05/1976", "077.659.321.77", "32978897-36", 48,
                         "98989", Setor.OPERACOES, -5000.00, "321", Endereco("Rua O", "45", "Apartamento B", "40000-000", "Salvador", UnidadeFederativa.BAHIA))
-      
+        
+def test_validar_idade_tipo_int(teste_engenheiro):
+    with pytest.raises(TypeError, match="Digite apenas números inteiros para idade."):
+        Engenheiro(23, "Jose", "(71)99999-8888", "jose231@gmail.com", Genero.MASCULINO, EstadoCivil.CASADO, "23/05/1976", "077.659.321.77", "32978897-36", "48",
+                        "98989", Setor.OPERACOES, -5000.00, "321", Endereco("Rua O", "45", "Apartamento B", "40000-000", "Salvador", UnidadeFederativa.BAHIA))
+        
+def test_validar_idade_acima_131(teste_engenheiro):
+    with pytest.raises(ValueError, match="A idade não pode ser acima de 130 anos."):
+        Engenheiro(23, "Jose", "(71)99999-8888", "jose231@gmail.com", Genero.MASCULINO, EstadoCivil.CASADO, "23/05/1976", "077.659.321.77", "32978897-36", 131,
+                        "98989", Setor.OPERACOES, -5000.00, "321", Endereco("Rua O", "45", "Apartamento B", "40000-000", "Salvador", UnidadeFederativa.BAHIA))
+        
+def test_validar_idade_negativa(teste_engenheiro):
+    with pytest.raises(ValueError, match="A idade não pode ser menor que zero."):
+        Engenheiro(23, "Jose", "(71)99999-8888", "jose231@gmail.com", Genero.MASCULINO, EstadoCivil.CASADO, "23/05/1976", "077.659.321.77", "32978897-36", -48,
+                        "98989", Setor.OPERACOES, -5000.00, "321", Endereco("Rua O", "45", "Apartamento B", "40000-000", "Salvador", UnidadeFederativa.BAHIA))
+
 #Validando Atributos
 def test_validar_id_engenheiro(teste_engenheiro):
     assert teste_engenheiro.id == 23
@@ -65,6 +85,9 @@ def test_validar_cpf_engenheiro(teste_engenheiro):
 
 def test_validar_rg_engenheiro(teste_engenheiro):
     assert teste_engenheiro.rg == "32978897-36"
+
+def test_validar_idade_engenheiro(teste_engenheiro):
+    assert teste_engenheiro.idade == 48
 
 def test_validar_matricula_engenheiro(teste_engenheiro):
     assert teste_engenheiro.matricula == "98989"

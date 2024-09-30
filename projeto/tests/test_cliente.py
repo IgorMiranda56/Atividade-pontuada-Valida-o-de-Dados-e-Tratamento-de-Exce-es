@@ -27,6 +27,11 @@ def test_validar_id_nome_vazio(teste_cliente):
         Cliente(80, "", "(71)99999-6666", "fernanda632@gmail.com", Genero.FEMININO, EstadoCivil.SOLTEIRO, "07/11/1985", 565698,
                         Endereco("Rua L", "9", "Apartamento 3-A", "45000-000", "Feira de Santana", UnidadeFederativa.BAHIA))
 
+def test_validar_nome_tipo(teste_cliente):
+    with pytest.raises(TypeError, match="O nome deveria ser um texto."):
+        Cliente(80, 123, "(71)99999-6666", "fernanda632@gmail.com", Genero.FEMININO, EstadoCivil.SOLTEIRO, "07/11/1985", 565698,
+                        Endereco("Rua L", "9", "Apartamento 3-A", "45000-000", "Feira de Santana", UnidadeFederativa.BAHIA))
+
 def test_validar_protocolo_atendimento_tipo_int(teste_cliente):
     with pytest.raises(TypeError, match="Digite somente numeros inteiros para cliente."):
         Cliente(80, "Fernanda", "(71)99999-6666", "fernanda632@gmail.com", Genero.FEMININO, EstadoCivil.SOLTEIRO, "07/11/1985", "k",

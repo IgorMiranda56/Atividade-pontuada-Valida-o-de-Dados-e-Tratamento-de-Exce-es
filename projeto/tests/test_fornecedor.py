@@ -25,6 +25,11 @@ def test_validar_id_nome_vazio(teste_fornecedor):
         Fornecedor(400, "", "(75)99999-3333", "acoforte@gmail.com", "798889/0001", "63213339", "Rolamento de Aço",
                                           Endereco("Rua RU", "1331", "Setor D", "49000-000", "Camacari", UnidadeFederativa.BAHIA))
 
+def test_validar_nome_tipo(teste_fornecedor):
+    with pytest.raises(TypeError, match="O nome deveria ser um texto."):
+        Fornecedor(400, 123, "(75)99999-3333", "acoforte@gmail.com", "798889/0001", "63213339", "Rolamento de Aço",
+                                          Endereco("Rua RU", "1331", "Setor D", "49000-000", "Camacari", UnidadeFederativa.BAHIA))
+        
 #Validando Atributos
 def test_validar_id_fornecedor(teste_fornecedor):
     assert teste_fornecedor.id == 400

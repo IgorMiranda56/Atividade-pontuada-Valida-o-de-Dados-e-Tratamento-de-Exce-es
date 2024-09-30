@@ -20,9 +20,12 @@ class Pessoa(ABC):
         return id
     
     def _verificar_nome(self, nome: str) -> str:
-        if not isinstance(nome, str) or not nome.strip():
+        if not isinstance(nome, str):
+            raise TypeError("O nome deveria ser um texto.")
+        if not nome.strip():
             raise ValueError("O nome não pode ser vazio.")
         return nome
+    
 
 #Tostring()
     def __str__(self) -> str:

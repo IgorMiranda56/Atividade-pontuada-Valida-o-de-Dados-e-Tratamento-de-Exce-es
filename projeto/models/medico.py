@@ -6,9 +6,9 @@ from projeto.models.funcionario import Funcionario
 
 #Definindo classe
 class Medico(Funcionario):
-    def __init__(self, id: int, nome: str, telefone: str, email: str, sexo: Genero, estado_civil: EstadoCivil, data_nascimento: str, cpf: str, rg: str,
+    def __init__(self, id: int, nome: str, telefone: str, email: str, sexo: Genero, estado_civil: EstadoCivil, data_nascimento: str, cpf: str, rg: str, idade: int,
                 matricula: str, setor: Setor, salario: float, crm: str, endereco: Endereco) -> None:
-        super().__init__(id, nome, telefone, email, sexo, estado_civil, data_nascimento, cpf, rg, matricula, setor, salario, endereco)
+        super().__init__(id, nome, telefone, email, sexo, estado_civil, data_nascimento, cpf, rg, idade, matricula, setor, salario, endereco)
         self.crm = crm
 
 #Definindo exceção para atributo
@@ -20,6 +20,9 @@ class Medico(Funcionario):
 
     def _verificar_nome(self, nome: str) -> str:
         return super()._verificar_nome(nome)
+    
+    def _verificar_idade(self, idade: int) -> int:
+        return super()._verificar_idade(idade)
     
 #Tostring()
     def __str__(self) -> str:

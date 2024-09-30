@@ -25,6 +25,10 @@ def test_validar_id_nome_vazio(teste_prestacao_servico):
         PrestacaoServico(103, "", "(75)99999-4444", "kaypesolucoes@gmail.com", "654648/0001", "63549879", "03/01/2020", "20/02/2024",
                                           Endereco("Rua TU", "1300", "Setor F", "47000-000", "Camacari", UnidadeFederativa.BAHIA))
 
+def test_validar_nome_tipo(teste_prestacao_servico):
+    with pytest.raises(TypeError, match="O nome deveria ser um texto."):
+        PrestacaoServico(103, 123, "(75)99999-4444", "kaypesolucoes@gmail.com", "654648/0001", "63549879", "03/01/2020", "20/02/2024",
+                                          Endereco("Rua TU", "1300", "Setor F", "47000-000", "Camacari", UnidadeFederativa.BAHIA))
 #Validando Atributos
 def test_validar_id_cliente(teste_prestacao_servico):
     assert teste_prestacao_servico.id == 103
